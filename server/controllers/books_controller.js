@@ -1,5 +1,5 @@
 
-let books = [];
+let books = [{id: 1, title: 'holes', author: 'fred flintstone'}];
 let id = 0;
 
 module.exports = {
@@ -27,8 +27,10 @@ module.exports = {
 		res.send(books);
 	},
 	
-	delete(req, res, next){
-		books = books.filter(book => book.id !== req.params.id);
-		res.json(books);
+	delete: ( req, res ) => {
+		const deleteID = req.params.id;
+		bookID = books.findIndex( book => book.id == deleteID );
+		books.splice( bookID, 1 );
+		res.status(200).send( books );
 	}
 };

@@ -5,6 +5,7 @@ const {json} = require('body-parser');
 const app = express();
 
 app.use(json());
+app.use(express.static(`${__dirname}/../public/build`));
 
 const port = 3000;
 
@@ -17,9 +18,6 @@ app.put('./api/books:id', bookCtrl.update);
 app.delete('./api/books:id', bookCtrl.delete);
 
 
-
-
-
 app.listen(port, () =>{
 	console.log(`listening on port: ${port}`);
-})
+});
